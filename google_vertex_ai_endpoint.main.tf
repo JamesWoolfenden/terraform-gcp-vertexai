@@ -2,8 +2,8 @@
 resource "google_vertex_ai_endpoint" "main" {
   project      = var.project_id
   location     = var.region
-  name         = "model-endpoint"
-  display_name = "model-endpoint"
+  name         = var.endpoint_name
+  display_name = var.endpoint_name
   network      = var.network
 
   encryption_spec {

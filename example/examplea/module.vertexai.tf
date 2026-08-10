@@ -5,4 +5,6 @@ module "vertexai" {
   region       = "europe-west2"
   kms_key_name = google_kms_crypto_key.vertexai.id
   network      = google_compute_network.private.id
+
+  depends_on = [google_kms_crypto_key_iam_member.vertexai]
 }

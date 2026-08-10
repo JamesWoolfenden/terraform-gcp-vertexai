@@ -7,3 +7,12 @@ provider "google" {
     created_by = "terraform"
   }
 }
+
+# google_vertex_ai_metadata_store requires the google-beta provider
+provider "google-beta" {
+  default_labels = {
+    "owner"    = "holden"
+    module     = "terraform-gcp-vertexai"
+    created_by = "terraform"
+  }
+}
