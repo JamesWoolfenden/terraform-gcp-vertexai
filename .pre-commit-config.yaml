@@ -42,10 +42,20 @@ repos:
         language_version: python3.11
     -   id: tf2docs
         language_version: python3.11
--   repo: https://github.com/jameswoolfenden/holden
-    rev: 7c1c55736e905ace3491ecb90c5546dbdda4198e # v0.0.9
+-   repo: local
     hooks:
-    -   id: holden-go
+    -   id: holden
+        name: holden
+        description: Scan Terraform for policy violations (locally-installed CLI)
+        language: system
+        entry: holden scan example/examplea
+        pass_filenames: false
+        types: [terraform]
+        # pre-push, not pre-commit: holden lives in a private repo that CI
+        # can't clone, and no CI runner has the CLI. pre-push still gates
+        # every push from a machine with holden installed.
+        # Requires `pre-commit install --hook-type pre-push` once per clone.
+        stages: [pre-push]
 -   repo: https://github.com/jameswoolfenden/pike
     rev: 716798c1e676a533c66d080573957b0d63610ca6 # v1.0.15
     hooks:
